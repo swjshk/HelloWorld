@@ -6,10 +6,12 @@ Module Module1
     Sub Main()
         'Console.WriteLine("hello world!")
         Dim a As List(Of String) = findfiles("C:\FO")
-        For Each file_name In a
-            Console.WriteLine(file_name)
-        Next
+        'For Each file_name In a
+        '    Console.WriteLine(file_name)
+        'Next
 
+        Dim file_name_json As String = Json.JsonConvert.SerializeObject(a)
+        File.WriteAllText("c:\FO\Test_filenamejson.txt", file_name_json)
 
         Dim b As Person_Info = New Person_Info
         b.Name = "Max"
@@ -30,6 +32,7 @@ Module Module1
         Dim di As DirectoryInfo = New DirectoryInfo(path)
         Dim di_json As String = Json.JsonConvert.SerializeObject(di)
         File.WriteAllText("c:\FO\Test_di.txt", di_json)
+
         Dim files As New List(Of String)
         For Each fi In di.GetFiles()
             Dim filename As String = fi.Name.ToString
