@@ -17,12 +17,19 @@ Module Module1
         b.Name = "Max"
         b.age = "30"
 
+        Dim path As String = "c:\FO\Test_DeserializeObject_from_file.txt"
         Dim json_string As String = Json.JsonConvert.SerializeObject(b)
+        File.WriteAllText(path, json_string)
 
-        Console.WriteLine(json_string)
-        File.WriteAllText("c:\FO\Test.txt", json_string)
-        Console.Write("press any key")
-        Console.ReadKey(True)
+        Dim path1 As String = "c:\FO\Test_DeserializeObject_from_file1.txt"
+        Dim c As Person_Info = Json.JsonConvert.DeserializeObject(Of Person_Info)(File.ReadAllText(path1))
+
+
+
+        'Console.WriteLine(json_string)
+        'File.WriteAllText("c:\FO\Test.txt", json_string)
+        'Console.Write("press any key")
+        'Console.ReadKey(True)
 
     End Sub
 
@@ -36,8 +43,8 @@ Module Module1
         Dim files As New List(Of String)
         For Each fi In di.GetFiles()
             Dim filename As String = fi.Name.ToString
-            Dim fi_json As String = Json.JsonConvert.SerializeObject(fi)
-            Console.WriteLine(fi_json)
+            'Dim fi_json As String = Json.JsonConvert.SerializeObject(fi)
+            'Console.WriteLine(fi_json)
             files.Add(filename)
         Next
 
